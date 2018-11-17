@@ -42,7 +42,7 @@ class FindController
             $data = json_decode($res->getBody(), true);
         } catch (ClientErrorResponseException $exception) {
             //TODO:: Algún aviso al desarrollador para revisar este fallo
-            return $this->sendResults('Error', 'The service isn\t available in this moment, please, try it later', [], Response::HTTP_SERVICE_UNAVAILABLE);
+            return $this->sendResults('Error', 'The service isn\'t available in this moment, please, try it later', [], Response::HTTP_SERVICE_UNAVAILABLE);
         }
 
         if ($res->getStatusCode() != 200 || !isset($data['results'])) {

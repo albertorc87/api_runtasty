@@ -1,6 +1,7 @@
 index:
-    path: /hola
-    controller: App\Controller\DefaultController::index
+    path: /
+    controller: App\Controller\IndexController::index
+    methods: GET
 api_v1_find:
     path: /api/v1/find
     controller: App\Controller\Api\V1\FindController::find
