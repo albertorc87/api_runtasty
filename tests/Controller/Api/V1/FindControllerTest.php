@@ -10,6 +10,36 @@ use App\Controller\Api\V1\FindController;
 
 class FindControllerTest extends WebTestCase
 {
+    public function testShowErrorMethodPost()
+    {
+        $request = new Request(
+            [],
+            [],
+            [],
+            $_COOKIE,
+            $_FILES,
+            $_SERVER
+        );
+
+        $find = new FindController();
+        $response = $find->find($request);
+        $result = json_decode($response->getContent(), true);
+
+        if (!isset($result['code'])) {
+            $result['code'] = 0;
+        }
+        if (!isset($result['status'])) {
+            $result['status'] = '';
+        }
+        if (!isset($result['msg'])) {
+            $result['msg'] = '';
+        }
+
+        $this->assertEquals(Response::HTTP_METHOD_NOT_ALLOWED, $result['code']);
+        $this->assertEquals('Error', $result['status']);
+        $this->assertNotEmpty($result['msg']);
+    }
+
     public function testShowErrorEmptyPost()
     {
         $request = new Request(
