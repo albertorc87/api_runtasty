@@ -8,3 +8,69 @@ header {
 	background-color: #E1E1E1;
 	padding: 20px;
 }
+
+input[type=text] {
+	margin: 0;
+	padding: 5px;
+	height: 30px;
+	width: 300px;
+}
+
+#wrapper {
+  text-align: center;
+}
+
+.search {
+	margin-top: 30px;
+	display: inline-block;
+}
+
+button {
+    padding: 5px;
+	height: 44px;
+	width: 64px;
+    background: #FF8B00;
+    color: white;
+    font-size: 17px;
+    border: none;
+    cursor: pointer;
+}
+
+button:disabled,
+button[disabled] {
+  background: #cccccc;
+  cursor: auto;
+}
+
+.error {
+	margin: 10px;
+	color: #FF0000;
+}
+
+.content {
+	padding: 20px 0px;
+	width: 760px;
+	background: #E1E1E1;
+}
+
+div#results > div:nth-of-type(odd) {
+    background: #F9F9F9;
+}
+
+#results {
+	width: 760px;
+	height: auto;
+    margin: 0 auto;
+    padding: 10px;
+    position: relative;
+    text-align:left;
+}
+
+.content_left {
+	float: left;
+	margin: 10px;
+}
+
+.content_right {
+	float: right;
+}

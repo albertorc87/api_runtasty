@@ -41,7 +41,7 @@ class FindController
             $res = $client->request('GET', $_ENV['URL_API_BASE'] . http_build_query($params));
             $data = json_decode($res->getBody(), true);
         } catch (ClientErrorResponseException $exception) {
-            //TODO:: Algún aviso al desarrollador para revisar este fallo
+            //TODO:: Si pasa esto guardar la info de la request y enviar al equipo de desarrollo
             return $this->sendResults('Error', 'The service isn\'t available in this moment, please, try it later', [], Response::HTTP_SERVICE_UNAVAILABLE);
         }
 
@@ -53,14 +53,7 @@ class FindController
             return $this->sendResults('Error', 'The service isn\t available in this moment, please, try it later', [], $code);
         }
 
-        return new JsonResponse(
-            [
-                'status' => 'Success',
-                'msg'    => 'OK',
-                'code'   => 200,
-                'results' => $data['results']
-            ]
-        );
+        return $this->sendResults('Success', 'OK', ['results' => $data['results']]);
     }
 
     private function sendResults(string $status, string $msg, array $extra_params, int $code = 200)
@@ -72,7 +65,7 @@ class FindController
         ];
 
         if (!empty($extra_params)) {
-            $response = array_merge($extra_params, $response);
+            $response = array_merge($response, $extra_params);
         }
 
         return new JsonResponse(

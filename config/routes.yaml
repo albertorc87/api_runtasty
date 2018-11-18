@@ -2,6 +2,10 @@ index:
     path: /
     controller: App\Controller\IndexController::index
     methods: GET
+search:
+    path: /
+    controller: App\Controller\IndexController::search
+    methods: POST
 api_v1_find:
     path: /api/v1/find
     controller: App\Controller\Api\V1\FindController::find

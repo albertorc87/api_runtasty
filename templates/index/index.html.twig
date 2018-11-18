@@ -1,10 +1,36 @@
 {# templates/index/index.html.twig #}
 {% extends 'base.html.twig' %}
-
+{% block title %}Start to search!{% endblock %}
 {% block body %}
-    <div class="search">
-    	<input type="text" id="ingredients" name="ingredients" placeholder="Ingredients like onions, beans, chicken, etc...">
-    	<input type="text" id="search" name="search" placeholder="More info like omelet, burgers, fish, etc...">
+    <form method="POST">
+    	<div id="wrapper">
+	    	<div class="search">
+		    	<input type="text" id="ingredients" name="ingredients" value="{{ingredients}}" placeholder="Ingredients like onions, beans, chicken, etc...">
+		    	<input type="text" id="search" name="search" value="{{search}}" placeholder="More info like omelet, burgers, fish, etc...">
+		    	<button type="submit" id="subsearch" disabled><i class="fa fa-search"></i></button>
+		    </div>
+		    {% if data is defined and data.status == 'Error' %}
+		    <div class="error">{{ data.msg }}</div>
+		    {% endif %}
+		    <div id="results">
+		    {% if data.results is defined and data.results is not empty %}
+		    	{% for result in data.results %}
+			        <div class="content">
+			        	<div class="content_left">
+			        		<img src="{{result.thumbnail}}"/>
+			        	</div>
+			        	<div class="content_left">
+			        		<h3>{{result.title}}</h3>
+				        	<div><a href="{{result.href}}">{{result.href}}</a></div>
+				        	<div>{{result.ingredients}}</div>
+			        	</div>
+			        	<div style="clear: both"></div>
+			        </div>
 
-    </div>
+			    {% endfor %}
+		    {% endif %}
+			</div>
+	    </div>
+    </form>
+
 {% endblock %}
