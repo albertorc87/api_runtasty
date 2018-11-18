@@ -1,4 +1,4 @@
-# Api y panel para usar un api
+# Api y panel con symfony4
 
 ## Panel
 
@@ -61,3 +61,17 @@ Ejemplo de respuesta errónea:
     "msg": "You must at least the param \"ingredients\" or \"search\""
 }
 ```
+
+## Test unitarios
+
+La api dispone de test unitarios, para usarlos simplemente lanza el siguiente comando:
+
+```
+php bin/phpunit
+```
+
+El script del test se encuentra en la carpeta:
+
+```
+tests/Controller/Api/V1/FindControllerTest.php
+``` 
