@@ -45,9 +45,9 @@ class FindController
             return $this->sendResults('Error', 'The service isn\'t available in this moment, please, try it later', [], Response::HTTP_SERVICE_UNAVAILABLE);
         }
 
-        if ($res->getStatusCode() != 200 || !isset($data['results'])) {
+        if ($res->getStatusCode() != Response::HTTP_OK || !isset($data['results'])) {
             $code = $res->getStatusCode();
-            if ($code == 200) {
+            if ($code == Response::HTTP_OK) {
                 $code = Response::HTTP_SERVICE_UNAVAILABLE;
             }
             return $this->sendResults('Error', 'The service isn\t available in this moment, please, try it later', [], $code);
@@ -56,7 +56,7 @@ class FindController
         return $this->sendResults('Success', 'OK', ['results' => $data['results']]);
     }
 
-    private function sendResults(string $status, string $msg, array $extra_params, int $code = 200)
+    private function sendResults(string $status, string $msg, array $extra_params, int $code = Response::HTTP_OK)
     {
         $response = [
             'status' => $status,
