@@ -1,4 +1,4 @@
-# Api y panel para testar la api de recipepuppy
+# Api y panel para usar un api
 
 ## Panel
 
