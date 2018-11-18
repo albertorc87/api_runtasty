@@ -139,5 +139,12 @@ class FindControllerTest extends WebTestCase
         $this->assertEquals('OK', $result['msg']);
         //Podría fallar si se eliminan las recetas pero si es así cambiamos la query del test para tenerlo controlado siempre
         $this->assertNotEmpty($result['results']);
+
+        //Chequear que existen los campos y no les han cambiado el nombre
+        $result = current($result['results']);
+        $this->assertArrayHasKey('title', $result);
+        $this->assertArrayHasKey('href', $result);
+        $this->assertArrayHasKey('ingredients', $result);
+        $this->assertArrayHasKey('thumbnail', $result);
     }
 }
